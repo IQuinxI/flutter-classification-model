@@ -30,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  late Interpreter interpreter;
+  Interpreter? interpreter;
 
   // Placeholder for input image data
   late List<List<List<double>>> inputData;
@@ -59,14 +59,14 @@ class _MyHomePageState extends State<MyHomePage> {
           inputData; // Assuming inputData is already in the correct format
 
       // Create output tensor
-      var outputTensor = List.filled(1 * 2, 0).reshape([1, 1]);
+      var outputTensor = List.filled(1 * 1, 0).reshape([1, 1]);
 
       // Run inference
-      interpreter.run(inputTensor, outputTensor);
+      interpreter?.run(inputTensor, outputTensor);
 
       // Access the output as needed
       processOutput(outputTensor);
-
+      print(outputTensor);
       print('Inference complete');
     } catch (e) {
       print('Error during inference: $e');
